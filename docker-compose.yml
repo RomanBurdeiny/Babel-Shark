@@ -1,0 +1,24 @@
+# vlasky:mysql читает binlog → пользователю нужны REPLICATION CLIENT / REPLICATION SLAVE (см. docker/mysql/01-vlasky-gr.sql).
+# Скрипт из docker/mysql выполняется только при первом создании данных. Уже есть том: см. блок comment внизу.
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: babel_shark
+      MYSQL_USER: babel_shark
+      MYSQL_PASSWORD: babel_shark
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d:ro
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --log-bin=mysql-bin
+      - --binlog-format=ROW
+      - --server-id=1
+
+# Если контейнер уже создавался без init-скрипта, один раз выдайте права вручную (или docker compose down -v и поднимите заново):
+# docker compose exec mysql mysql -uroot -proot -e "GRANT REPLICATION CLIENT, REPLICATION SLAVE ON *.* TO 'babel_shark'@'%'; FLUSH PRIVILEGES;"

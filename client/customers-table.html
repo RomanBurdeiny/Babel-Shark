@@ -1,0 +1,23 @@
+<template name="customersTable">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Full name</th>
+          <th scope="col">Position</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each customerRows}}
+          <tr>
+            <td>{{customerId}}</td>
+            <td>{{fullName}}</td>
+            {{! ТЗ: сначала labelEn из MySQL (positions); перевод — после MutationObserver и Meteor.call('translate'). }}
+            <td class="__t" data-position-key="{{positionKey}}">{{positionLabelPlain}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>

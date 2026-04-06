@@ -1,0 +1,19 @@
+{
+  "name": "babel-shark",
+  "private": true,
+  "description": "Meteor app — не добавлять пакет meteor в dependencies (только глобальный/установщик CLI).",
+  "scripts": {
+    "start": "tools\\run-meteor.cmd run --settings settings.json",
+    "meteor": "tools\\run-meteor.cmd"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.29.2",
+    "jquery": "^3.7.1",
+    "mysql2": "^3.20.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28"
+  },
+  "devDependencies": {
+    "@types/meteor": "^2.9.11"
+  }
+}

@@ -1,0 +1,10 @@
+meteor-base
+mongo
+reactive-var
+tracker
+typescript
+blaze-html-templates
+jquery
+shell-server
+check
+vlasky:mysql
